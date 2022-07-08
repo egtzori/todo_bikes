@@ -1,0 +1,7 @@
+postgres96:
+  image: postgres:9.6
+  ports:
+    - "5439:5432"
+  environment:    
+    POSTGRES_PASSWORD: admin@123999
+    POSTGRES_USER: postgres
