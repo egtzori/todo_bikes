@@ -98,3 +98,18 @@ One to get the JWT and the 4 CRUD methods.
 Be sure to edit the Postman's environment and set the variable `host` to point to the API
 
 
+### Start the backend API server
+To start it, go to folder `api/`
+First install all node modules with `yarn`
+It supports the following yarn targets:
+```
+watch
+test
+test:watch
+build
+```
+
+To run the backend run `yarn watch`
+
+*the database must be up and running before starting the api*
+
