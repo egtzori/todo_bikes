@@ -1,0 +1,224 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Todo": {
+				"properties": {
+					"done": {
+						"type": "boolean",
+						"description": "Flag id this Todo is done"
+					},
+					"description": {
+						"type": "string",
+						"description": "Description text for this Todo"
+					},
+					"id": {
+						"type": "number",
+						"format": "double",
+						"description": "number id, auto generated on creation"
+					}
+				},
+				"required": [
+					"done",
+					"description",
+					"id"
+				],
+				"type": "object",
+				"description": "Main Todo type"
+			},
+			"Pick_Todo.description_": {
+				"properties": {
+					"description": {
+						"type": "string",
+						"description": "Description text for this Todo"
+					}
+				},
+				"required": [
+					"description"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"AddItemRequest": {
+				"$ref": "#/components/schemas/Pick_Todo.description_"
+			},
+			"Pick_Todo.id-or-done_": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double",
+						"description": "number id, auto generated on creation"
+					},
+					"done": {
+						"type": "boolean",
+						"description": "Flag id this Todo is done"
+					}
+				},
+				"required": [
+					"id",
+					"done"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"UpdateItemRequest": {
+				"$ref": "#/components/schemas/Pick_Todo.id-or-done_"
+			},
+			"Pick_Todo.id_": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double",
+						"description": "number id, auto generated on creation"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"DeleteItemRequest": {
+				"$ref": "#/components/schemas/Pick_Todo.id_"
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "todoAPI",
+		"version": "0.0.1",
+		"description": "todo api",
+		"license": {
+			"name": "Unlicense"
+		},
+		"contact": {
+			"name": "Borislav Lukanov ",
+			"email": "egtzori@gmail.com"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/": {
+			"get": {
+				"operationId": "ListItems",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Todo"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get list of all todo items",
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "AddItem",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "boolean"
+								}
+							}
+						}
+					}
+				},
+				"description": "Add new item",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "Provide description for the new Todo",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AddItemRequest",
+								"description": "Provide description for the new Todo"
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"operationId": "UpdateItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "boolean"
+								}
+							}
+						}
+					}
+				},
+				"description": "Update existing Todo",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "Json object containing id and done",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateItemRequest",
+								"description": "Json object containing id and done"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "boolean"
+								}
+							}
+						}
+					}
+				},
+				"description": "Update existing Todo",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "Json object with id to delete",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeleteItemRequest",
+								"description": "Json object with id to delete"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

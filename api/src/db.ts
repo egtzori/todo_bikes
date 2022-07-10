@@ -38,7 +38,6 @@ async function deleteItem(id:number):Promise<boolean> {
   const client = await pool.connect();
   const result = await client.query("DELETE FROM todos WHERE id=$1", [id]);
   client.release();
-  console.log(result);
   return 1 === result.rowCount;
 }
 

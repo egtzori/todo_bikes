@@ -1,7 +1,4 @@
-import { expressjwt } from 'express-jwt';
 import app from './app';
-import secret from './secret';
-import {idp} from './idp';
 import * as todo from './todo';
 import {pool} from './db';
 
@@ -15,24 +12,7 @@ async function init() {
     console.log("cannot connect to database", ex);
   }
 
-
-  // use JWT middleware for all but the '/idp' path
-  app.use(
-    expressjwt({secret, algorithms: ["HS256"]})
-    .unless({ path: ["/idp"] })
-  );
-
-  // endpoint to get JWT
-  app.post('/idp', idp);
-
-  // JWT protected TODO endpoints
-  app.get('/', todo.listItems);
-  app.post('/', todo.addItem);
-  app.put('/', todo.updateItem);
-  app.delete('/', todo.deleteItem);
-
   app.listen(3001);
-
 }
 
 
