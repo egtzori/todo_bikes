@@ -1,5 +1,4 @@
 import app from './app';
-import * as todo from './todo';
 import {pool} from './db';
 
 async function init() {

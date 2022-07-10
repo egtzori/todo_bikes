@@ -86,7 +86,13 @@
 				"$ref": "#/components/schemas/Pick_Todo.id_"
 			}
 		},
-		"securitySchemes": {}
+		"securitySchemes": {
+			"bearerAuth": {
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "jwt"
+			}
+		}
 	},
 	"info": {
 		"title": "todoAPI",
@@ -121,7 +127,11 @@
 					}
 				},
 				"description": "Get list of all todo items",
-				"security": [],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
 				"parameters": []
 			},
 			"post": {
@@ -139,7 +149,11 @@
 					}
 				},
 				"description": "Add new item",
-				"security": [],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
 				"parameters": [],
 				"requestBody": {
 					"description": "Provide description for the new Todo",
@@ -169,7 +183,11 @@
 					}
 				},
 				"description": "Update existing Todo",
-				"security": [],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
 				"parameters": [],
 				"requestBody": {
 					"description": "Json object containing id and done",
@@ -199,7 +217,11 @@
 					}
 				},
 				"description": "Update existing Todo",
-				"security": [],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
 				"parameters": [],
 				"requestBody": {
 					"description": "Json object with id to delete",
