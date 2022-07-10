@@ -22,7 +22,7 @@ API will read and write to table `todos` in the default database `postgres`
 
 ## OpenAPI
 Swagger suport was added to url `/docs`, check both images for example
-![Swagger overview](https://github.com/egtzori/todo_bikes/blob/master/swagger-full.jpg)
+![Swagger overview](https://github.com/egtzori/todo_bikes/blob/master/swagger-full.jpg?raw=true)
 
 
 ## Two factor
